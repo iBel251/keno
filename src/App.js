@@ -6,16 +6,14 @@ const tele = window.Telegram.WebApp;
 
 function App() {
   useEffect(() => {
-    tele.ready();
-
-    // Fetch user data
-    const userData = tele.initDataUnsafe.user;
-    const userId = userData?.id;
-    const username = userData?.username; // Note: username might be undefined if the user hasn't set one in Telegram
-    alert(`User ID: ${userId}, Username: ${username}`);
-    // Send this data to your backend for storage
-    //handleLogin(userId, username);
-  });
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.ready();
+      const userData = window.Telegram.WebApp.initDataUnsafe.user;
+      alert(`User ID: ${userData.id}, Username: ${userData.username}`);
+    } else {
+      alert("Not running inside Telegram WebApp");
+    }
+  }, []);
   return (
     <div className="App">
       <Index />
