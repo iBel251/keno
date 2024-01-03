@@ -8,7 +8,7 @@ function App() {
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
       window.Telegram.WebApp.ready();
-      const userData = window.Telegram.WebApp.initDataUnsafe.user;
+      const userData = window.Telegram.WebApp.initData;
       //alert(`User ID: ${userData.id}, Username: ${userData.username}`);
       alert(JSON.stringify(userData));
     } else {
